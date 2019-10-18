@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 
-	"goinsta"
+	"github.com/on-tec/goinsta"
 )
 
 // ExportAsBytes exports selected *Instagram object as []byte
