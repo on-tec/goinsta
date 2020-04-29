@@ -92,9 +92,9 @@ func (inbox *Inbox) sync(pending bool, params map[string]string) error {
 		if err == nil {
 			*inbox = resp.Inbox
 			inbox.inst = insta
-			inbox.SeqID = resp.Inbox.SeqID
-			inbox.PendingRequestsTotal = resp.Inbox.PendingRequestsTotal
-			inbox.SnapshotAtMs = resp.Inbox.SnapshotAtMs
+			inbox.SeqID = resp.SeqID
+			inbox.PendingRequestsTotal = resp.PendingRequestsTotal
+			inbox.SnapshotAtMs = resp.SnapshotAtMs
 			for i := range inbox.Conversations {
 				inbox.Conversations[i].inst = insta
 				inbox.Conversations[i].firstRun = true
@@ -125,9 +125,9 @@ func (inbox *Inbox) next(pending bool, params map[string]string) bool {
 		if err == nil {
 			*inbox = resp.Inbox
 			inbox.inst = insta
-			inbox.SeqID = resp.Inbox.SeqID
-			inbox.PendingRequestsTotal = resp.Inbox.PendingRequestsTotal
-			inbox.SnapshotAtMs = resp.Inbox.SnapshotAtMs
+			inbox.SeqID = resp.SeqID
+			inbox.PendingRequestsTotal = resp.PendingRequestsTotal
+			inbox.SnapshotAtMs = resp.SnapshotAtMs
 			for i := range inbox.Conversations {
 				inbox.Conversations[i].inst = insta
 				inbox.Conversations[i].firstRun = true
