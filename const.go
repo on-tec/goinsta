@@ -120,6 +120,7 @@ const (
 	urlInbox         = "direct_v2/inbox/"
 	urlInboxPending  = "direct_v2/pending_inbox/"
 	urlInboxSend     = "direct_v2/threads/broadcast/text/"
+	urlInboxSendLink = "direct_v2/threads/broadcast/link/"
 	urlInboxSendLike = "direct_v2/threads/broadcast/like/"
 	urlReplyStory    = "direct_v2/threads/broadcast/reel_share/"
 	urlInboxThread   = "direct_v2/threads/%s/"

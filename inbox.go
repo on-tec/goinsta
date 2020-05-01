@@ -3,6 +3,7 @@ package goinsta
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 )
 
 // InboxItem is any conversation message.
@@ -329,6 +330,44 @@ func (c *Conversation) Send(text string) error {
 		&reqOptions{
 			Connection: "keep-alive",
 			Endpoint:   urlInboxSend,
+			Query:      data,
+			IsPost:     true,
+		},
+	)
+	return err
+}
+
+func (c *Conversation) SendLink(link string, text string) error {
+	insta := c.inst
+	// I DON'T KNOW WHY BUT INSTAGRAM WANTS A DOUBLE SLICE OF INTS FOR ONE ID.
+	to, err := prepareRecipients(c)
+	if err != nil {
+		return err
+	}
+
+	linkUrl, err := url.ParseRequestURI(link)
+	if err != nil {
+		return err
+	}
+
+	links, err := json.Marshal([]string{linkUrl.String()})
+	if err != nil {
+		return err
+	}
+
+	data := insta.prepareDataQuery(
+		map[string]interface{}{
+			"recipient_users": to,
+			"client_context":  generateUUID(),
+			"action":          "send_item",
+			"link_urls":       links,
+			"link_text":       text,
+		},
+	)
+	_, err = insta.sendRequest(
+		&reqOptions{
+			Connection: "keep-alive",
+			Endpoint:   urlInboxSendLink,
 			Query:      data,
 			IsPost:     true,
 		},
