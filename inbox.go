@@ -3,7 +3,6 @@ package goinsta
 import (
 	"encoding/json"
 	"fmt"
-	"net/url"
 )
 
 // InboxItem is any conversation message.
@@ -345,12 +344,7 @@ func (c *Conversation) SendLink(link string, text string) error {
 		return err
 	}
 
-	linkUrl, err := url.ParseRequestURI(link)
-	if err != nil {
-		return err
-	}
-
-	links, err := json.Marshal([]string{linkUrl.String()})
+	links, err := json.Marshal([]string{link})
 	if err != nil {
 		return err
 	}
