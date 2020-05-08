@@ -36,6 +36,17 @@ type InboxItem struct {
 		URLExpireAtSecs      int    `json:"url_expire_at_secs"`
 		OrganicTrackingToken string `json:"organic_tracking_token"`
 	}
+
+	// Text is link
+	Link struct {
+		Text        string `json:"text"`
+		LinkContext struct {
+			LinkUrl      string `json:"link_url"`
+			LinkTitle    string `json:"link_title"`
+			LinkSummary  string `json:"link_summary"`
+			LinkImageUrl string `json:"link_image_url"`
+		} `json:"link"`
+	}
 }
 
 // Inbox is the direct message inbox.
